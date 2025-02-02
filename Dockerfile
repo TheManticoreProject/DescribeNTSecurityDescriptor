@@ -16,18 +16,23 @@ RUN echo '#!/bin/bash' > /entrypoint.sh \
     && echo 'cd /workspace/src/' >> /entrypoint.sh \
     && echo '/usr/local/go/bin/go clean' >> /entrypoint.sh \
     && echo 'echo "[+] Building"' >> /entrypoint.sh \
-    # && echo 'echo " ├──[>] Building for linux i386"' >> /entrypoint.sh \
-    # && echo 'mkdir -p /workspace/bin/linux/x86/' >> /entrypoint.sh >> /entrypoint.sh \
-    # && echo 'GOOS=linux GOARCH=386 /usr/local/go/bin/go build -o /workspace/bin/linux/x86/ -buildvcs=false' >> /entrypoint.sh \
-    && echo 'echo " ├──[>] Building for linux amd64"' >> /entrypoint.sh \
-    && echo 'mkdir -p /workspace/bin/linux/x64/' >> /entrypoint.sh >> /entrypoint.sh \
-    && echo 'GOOS=linux GOARCH=amd64 /usr/local/go/bin/go build -o /workspace/bin/linux/x64/ -buildvcs=false' >> /entrypoint.sh \
-    # && echo 'echo " ├──[>] Building for Windows i386"' >> /entrypoint.sh \
-    # && echo 'mkdir -p /workspace/bin/windows/x86/' >> /entrypoint.sh >> /entrypoint.sh \
-    # && echo 'GOOS=windows GOARCH=386 /usr/local/go/bin/go build -o /workspace/bin/windows/x86/ -buildvcs=false' >> /entrypoint.sh \
-    # && echo 'echo " └──[>] Building for Windows amd64"' >> /entrypoint.sh \
-    # && echo 'mkdir -p /workspace/bin/windows/x64/' >> /entrypoint.sh >> /entrypoint.sh \
-    # && echo 'GOOS=windows GOARCH=amd64 /usr/local/go/bin/go build -o /workspace/bin/windows/x64/ -buildvcs=false' >> /entrypoint.sh \
+    && echo 'if [ $# -ge 2 ]; then' >> /entrypoint.sh \
+    && echo '  OS=$1' >> /entrypoint.sh \
+    && echo '  GOARCH=$2' >> /entrypoint.sh \
+    && echo 'else' >> /entrypoint.sh \
+    && echo '  OS=$(uname -s | tr "[:upper:]" "[:lower:]")' >> /entrypoint.sh \
+    && echo '  ARCH=$(uname -m)' >> /entrypoint.sh \
+    && echo '  case $ARCH in' >> /entrypoint.sh \
+    && echo '    x86_64) GOARCH="amd64" ;;' >> /entrypoint.sh \
+    && echo '    i386|i686) GOARCH="386" ;;' >> /entrypoint.sh \
+    && echo '    aarch64) GOARCH="arm64" ;;' >> /entrypoint.sh \
+    && echo '    armv7*) GOARCH="arm" ;;' >> /entrypoint.sh \
+    && echo '    *) echo "Unsupported architecture $ARCH"; exit 1 ;;' >> /entrypoint.sh \
+    && echo '  esac' >> /entrypoint.sh \
+    && echo 'fi' >> /entrypoint.sh \
+    && echo 'echo " ├──[>] Building for $OS $GOARCH"' >> /entrypoint.sh \
+    && echo 'mkdir -p "/workspace/bin/$OS/$GOARCH/"' >> /entrypoint.sh \
+    && echo 'GOOS=$OS GOARCH=$GOARCH /usr/local/go/bin/go build -o "/workspace/bin/$OS/$GOARCH/" -buildvcs=false' >> /entrypoint.sh \
     && chmod +x /entrypoint.sh
 
 # Prepare workspace volume
@@ -35,4 +40,4 @@ RUN mkdir -p /workspace/
 VOLUME /workspace/
 WORKDIR /workspace/
 
-CMD ["/bin/bash", "/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
