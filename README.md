@@ -42,7 +42,7 @@
 ## Usage
 
 ```
-$ ./DescribeNTSecurityDescriptor  -h
+$ ./DescribeNTSecurityDescriptor -h
 DescribeNTSecurityDescriptor - by Remi GASCOU (Podalirius) - v1.2
 
 Usage: DescribeNTSecurityDescriptor [--debug] [--domain <string>] [--username <string>] [--password <string>] [--hashes <string>] [--dc-ip <string>] [--port <tcp port>] [--use-ldaps] [--distinguished-name <string>] [--file-hex <string>] [--file-base64 <string>] [--file-raw <string>] [--value-hex <string>] [--value-base64 <string>]
