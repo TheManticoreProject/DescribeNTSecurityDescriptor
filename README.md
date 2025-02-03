@@ -10,6 +10,7 @@
       <br>
 </p>
 
+
 ## Features
 
 - [x] Reads source value from a file containing a raw ntSecurityDescriptor structure, in raw bytes, hex string or base64 string formats.
@@ -68,6 +69,7 @@ Usage: DescribeNTSecurityDescriptor [--debug] [--domain <string>] [--username <s
     -vb, --value-base64 <string>      Raw base64 encoded value of NTSecurityDescriptor. (default: "")
 ```
 
+
 ## Demonstration with a `--distinguished-name`
 
 ```bash
@@ -83,6 +85,22 @@ Usage: DescribeNTSecurityDescriptor [--debug] [--domain <string>] [--username <s
 ```
 
 ![](./.github/example_value.png)
+
+
+## Building the project
+
+To build the project, use the following Docker command in this directory:
+
+```bash
+docker run -v $(pwd):/workspace/ podalirius/build-go-project
+```
+
+Or, if you want to build it manually, you can use the following commands:
+
+```
+GOOS=linux GOARCH=amd64; mkdir -p "/workspace/bin/linux/${GOOS}/${GOARCH}/" && /usr/local/go/bin/go build -o "/workspace/bin/linux/${GOOS}/${GOARCH}/" -buildvcs=false
+```
+
 
 ## Contributing
 

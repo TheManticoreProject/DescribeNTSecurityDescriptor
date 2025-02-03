@@ -15,7 +15,6 @@ RUN echo '#!/bin/bash' > /entrypoint.sh \
     && echo 'mkdir -p /workspace/bin/' >> /entrypoint.sh \
     && echo 'cd /workspace/src/' >> /entrypoint.sh \
     && echo '/usr/local/go/bin/go clean' >> /entrypoint.sh \
-    && echo 'echo "[+] Building"' >> /entrypoint.sh \
     && echo 'if [ $# -ge 2 ]; then' >> /entrypoint.sh \
     && echo '  OS=$1' >> /entrypoint.sh \
     && echo '  GOARCH=$2' >> /entrypoint.sh \
@@ -30,9 +29,12 @@ RUN echo '#!/bin/bash' > /entrypoint.sh \
     && echo '    *) echo "Unsupported architecture $ARCH"; exit 1 ;;' >> /entrypoint.sh \
     && echo '  esac' >> /entrypoint.sh \
     && echo 'fi' >> /entrypoint.sh \
-    && echo 'echo " ├──[>] Building for $OS $GOARCH"' >> /entrypoint.sh \
+    && echo 'echo "[>] Building for GOOS=$OS GOARCH=$GOARCH"' >> /entrypoint.sh \
     && echo 'mkdir -p "/workspace/bin/$OS/$GOARCH/"' >> /entrypoint.sh \
+    && echo 'echo "[>] Writing binaries in ./bin/$OS/$GOARCH/"' >> /entrypoint.sh \
+    && echo 'echo "[>] Building: GOOS=$OS GOARCH=$GOARCH /usr/local/go/bin/go build -o "/workspace/bin/$OS/$GOARCH/" -buildvcs=false"' >> /entrypoint.sh \
     && echo 'GOOS=$OS GOARCH=$GOARCH /usr/local/go/bin/go build -o "/workspace/bin/$OS/$GOARCH/" -buildvcs=false' >> /entrypoint.sh \
+    && echo 'echo "[>] Done"' >> /entrypoint.sh \
     && chmod +x /entrypoint.sh
 
 # Prepare workspace volume
