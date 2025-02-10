@@ -10,7 +10,6 @@
       <br>
 </p>
 
-
 ## Features
 
 - [x] Reads source value from a file containing a raw ntSecurityDescriptor structure, in raw bytes, hex string or base64 string formats.
