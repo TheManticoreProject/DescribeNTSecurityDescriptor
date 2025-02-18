@@ -97,7 +97,7 @@ docker run -v $(pwd):/workspace/ podalirius/build-go-project
 Or, if you want to build it manually, you can use the following commands:
 
 ```
-GOOS=linux GOARCH=amd64; mkdir -p "/workspace/bin/linux/${GOOS}/${GOARCH}/" && /usr/local/go/bin/go build -o "/workspace/bin/linux/${GOOS}/${GOARCH}/" -buildvcs=false
+GOOS=linux GOARCH=amd64; mkdir -p "/workspace/bin/linux/${GOOS}/${GOARCH}/" && /usr/local/go/bin/go build -o "/workspace/bin/linux/${GOOS}/${GOARCH}/DescribeNTSecurityDescriptor" -buildvcs=false
 ```
 
 
