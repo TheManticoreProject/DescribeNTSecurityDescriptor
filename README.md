@@ -1,12 +1,11 @@
 ![](./.github/banner.png)
 
 <p align="center">
-      A cross-platforms tool to parse and describe the contents of a raw ntSecurityDescriptor structure. 
+      A cross-platform tool to parse and describe the contents of a raw ntSecurityDescriptor structure. 
       <br>
-      <a href="https://github.com/p0dalirius/DescribeNTSecurityDescriptor/actions/workflows/release.yaml" title="Build"><img alt="Build and Release" src="https://github.com/p0dalirius/DescribeNTSecurityDescriptor/actions/workflows/release.yaml/badge.svg"></a>
-      <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/p0dalirius/DescribeNTSecurityDescriptor">
-      <a href="https://twitter.com/intent/follow?screen_name=podalirius_" title="Follow"><img src="https://img.shields.io/twitter/follow/podalirius_?label=Podalirius&style=social"></a>
-      <a href="https://www.youtube.com/c/Podalirius_?sub_confirmation=1" title="Subscribe"><img alt="YouTube Channel Subscribers" src="https://img.shields.io/youtube/channel/subscribers/UCF_x5O7CSfr82AfNVTKOv_A?style=social"></a>
+      <a href="https://github.com/TheManticoreProject/DescribeNTSecurityDescriptor/actions/workflows/release.yaml" title="Build"><img alt="Build and Release" src="https://github.com/TheManticoreProject/DescribeNTSecurityDescriptor/actions/workflows/release.yaml/badge.svg"></a>
+      <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/TheManticoreProject/DescribeNTSecurityDescriptor">
+      <img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/TheManticoreProject/DescribeNTSecurityDescriptor"> 
       <br>
 </p>
 
@@ -42,7 +41,7 @@
 
 ```
 $ ./DescribeNTSecurityDescriptor -h
-DescribeNTSecurityDescriptor - by Remi GASCOU (Podalirius) - v1.2
+DescribeNTSecurityDescriptor - by Remi GASCOU (Podalirius) @ TheManticoreProject - v1.3.0
 
 Usage: DescribeNTSecurityDescriptor [--debug] [--domain <string>] [--username <string>] [--password <string>] [--hashes <string>] [--dc-ip <string>] [--port <tcp port>] [--use-ldaps] [--distinguished-name <string>] [--file-hex <string>] [--file-base64 <string>] [--file-raw <string>] [--value-hex <string>] [--value-base64 <string>]
 
@@ -100,7 +99,10 @@ Or, if you want to build it manually, you can use the following commands:
 GOOS=linux GOARCH=amd64; mkdir -p "/workspace/bin/linux/${GOOS}/${GOARCH}/" && /usr/local/go/bin/go build -o "/workspace/bin/linux/${GOOS}/${GOARCH}/DescribeNTSecurityDescriptor" -buildvcs=false
 ```
 
-
 ## Contributing
 
 Pull requests are welcome. Feel free to open an issue if you want to add other features.
+
+## Credits
+  - [@p0dalirius](https://github.com/p0dalirius) for the creation of the [DescribeNTSecurityDescriptor](https://github.com/p0dalirius/DescribeNTSecurityDescriptor) project before transferring it to TheManticoreProject.
+

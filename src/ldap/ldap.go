@@ -1,7 +1,7 @@
 package ldap
 
 import (
-	"DescribeNTSecurityDescriptor/logger"
+	"github.com/TheManticoreProject/DescribeNTSecurityDescriptor/logger"
 
 	"crypto/tls"
 	"fmt"

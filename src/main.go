@@ -1,16 +1,17 @@
 package main
 
 import (
-	"DescribeNTSecurityDescriptor/ldap"
-	"DescribeNTSecurityDescriptor/logger"
 	"os"
+
+	"github.com/TheManticoreProject/DescribeNTSecurityDescriptor/ldap"
+	"github.com/TheManticoreProject/DescribeNTSecurityDescriptor/logger"
 
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
 
-	"github.com/p0dalirius/goopts/parser"
-	"github.com/p0dalirius/winacl/securitydescriptor"
+	"github.com/TheManticoreProject/goopts/parser"
+	"github.com/TheManticoreProject/winacl/securitydescriptor"
 )
 
 var (
@@ -39,7 +40,7 @@ var (
 )
 
 func parseArgs() {
-	ap := parser.ArgumentsParser{Banner: "DescribeNTSecurityDescriptor - by Remi GASCOU (Podalirius) - v1.2"}
+	ap := parser.ArgumentsParser{Banner: "DescribeNTSecurityDescriptor - by Remi GASCOU (Podalirius) @ TheManticoreProject - v1.3.0"}
 
 	// Configuration flags
 	ap.NewBoolArgument(&debug, "-d", "--debug", false, "Debug mode.")
